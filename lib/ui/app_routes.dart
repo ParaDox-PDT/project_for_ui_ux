@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_defualt_project/ui/home/home_screen.dart';
+import 'package:flutter_defualt_project/ui/home_2/home_screen_2.dart';
 
 class RouteNames {
-  static const String homeScreen = "/";
+  static const String homeScreen2 = "/";
 }
 
 class AppRoutes {
   static Route generateRoute(RouteSettings settings) {
     switch (settings.name) {
-      case RouteNames.homeScreen:
+      case RouteNames.homeScreen2:
         return MaterialPageRoute(
-          builder: (context) => const HomeScreen(),
+          builder: (context) => const HomeScreen2(),
         );
       default:
         return MaterialPageRoute(

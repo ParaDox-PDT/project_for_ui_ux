@@ -6,12 +6,12 @@ import 'colors.dart';
 
 class AppTheme {
   static ThemeData darkTheme = ThemeData(
-    scaffoldBackgroundColor: AppColors.C_180B37,
+    scaffoldBackgroundColor: AppColors.C_111015,
     appBarTheme: const AppBarTheme(
       elevation: 0,
-      backgroundColor: AppColors.C_180B37,
+      backgroundColor: AppColors.C_111015,
       systemOverlayStyle: SystemUiOverlayStyle(
-        statusBarColor: AppColors.C_180B37,
+        statusBarColor: AppColors.C_111015,
         statusBarBrightness: Brightness.light,
         statusBarIconBrightness: Brightness.light,
       ),
@@ -47,24 +47,24 @@ class AppTheme {
       headlineSmall: TextStyle(
           color: AppColors.textColor,
           fontSize: 24.sp,
-          fontWeight: FontWeight.w400,
-          fontFamily: "Lato"),
+          fontWeight: FontWeight.w700,
+          fontFamily: "Inter"),
       //title
       titleLarge: TextStyle(
           color: AppColors.textColor,
-          fontSize: 20.sp,
-          fontWeight: FontWeight.w700,
-          fontFamily: "Lato"),
+          fontSize: 18.sp,
+          fontWeight: FontWeight.w500,
+          fontFamily: "Inter"),
       titleMedium: TextStyle(
           color: AppColors.textColor,
           fontSize: 16.sp,
           fontWeight: FontWeight.w700,
-          fontFamily: "Lato"),
+          fontFamily: "Inter"),
       titleSmall: TextStyle(
           color: AppColors.textColor,
           fontSize: 14.sp,
-          fontWeight: FontWeight.w500,
-          fontFamily: "Lato"),
+          fontWeight: FontWeight.w400,
+          fontFamily: "Inter"),
       //label
       labelLarge: TextStyle(
           color: AppColors.textColor,
@@ -75,28 +75,28 @@ class AppTheme {
           color: AppColors.textColor,
           fontSize: 12.sp,
           fontWeight: FontWeight.w500,
-          fontFamily: "Lato"),
+          fontFamily: "Inter"),
       labelSmall: TextStyle(
-          color: AppColors.textColor,
-          fontSize: 10.sp,
-          fontWeight: FontWeight.w400,
-          fontFamily: "Lato"),
+          color: AppColors.C_6A6A6E,
+          fontSize: 9.sp,
+          fontWeight: FontWeight.w500,
+          fontFamily: "Inter"),
       //body
       bodySmall: const TextStyle(
           color: AppColors.passiveTextColor,
           fontSize: 16,
-          fontWeight: FontWeight.w700,
-          fontFamily: "Lato"),
+          fontWeight: FontWeight.w500,
+          fontFamily: "Inter"),
       bodyMedium: TextStyle(
           color: AppColors.textColor,
           fontSize: 16.sp,
           fontWeight: FontWeight.w700,
-          fontFamily: "Lato"),
+          fontFamily: "Inter"),
       bodyLarge: TextStyle(
-          color: AppColors.textColor,
+          color: AppColors.C_6A6A6E,
           fontSize: 12.sp,
           fontWeight: FontWeight.w500,
-          fontFamily: "Lato"),
+          fontFamily: "Inter"),
     ),
   );
   static ThemeData lightTheme = ThemeData();

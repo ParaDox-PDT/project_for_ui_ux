@@ -31,6 +31,7 @@ dependencies:
   path_provider: ^2.0.15
   path: ^1.8.3
   mask_text_input_formatter: ^2.4.0
+  like_button: ^2.0.5
 
 dev_dependencies:
   flutter_test:
@@ -73,3 +74,15 @@ flutter:
         - asset: assets/fonts/Poppins/Montserrat-Thin.ttf
         - asset: assets/fonts/Poppins/Montserrat-ThinItalic.ttf
           style: italic
+
+    - family: Inter
+      fonts:
+        - asset: assets/fonts/Inter/Inter-Black.ttf
+        - asset: assets/fonts/Inter/Inter-Bold.ttf
+        - asset: assets/fonts/Inter/Inter-ExtraBold.ttf
+        - asset: assets/fonts/Inter/Inter-ExtraLight.ttf
+        - asset: assets/fonts/Inter/Inter-Light.ttf
+        - asset: assets/fonts/Inter/Inter-Medium.ttf
+        - asset: assets/fonts/Inter/Inter-Regular.ttf
+        - asset: assets/fonts/Inter/Inter-SemiBold.ttf
+        - asset: assets/fonts/Inter/Inter-Thin.ttf
