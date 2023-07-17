@@ -7,11 +7,11 @@ class ApiRepository{
   final ApiProvider apiProvider;
   ApiRepository({required this.apiProvider});
 
-  Future<List<NamazTimeModel>> getDailyTime({required String region,required String month})async{
-    UniversalResponse universalResponse=await apiProvider.getMonthlyTime(month,region);
+  Future<String> translate({required String text,required String firstLang, required String secondLang})async{
+    UniversalResponse universalResponse=await apiProvider.translateText(text,firstLang,secondLang);
     if(universalResponse.error.isEmpty){
-      return universalResponse.data as List<NamazTimeModel>;
+      return universalResponse.data as String;
     }
-    return [];
+    return "";
   }
 }

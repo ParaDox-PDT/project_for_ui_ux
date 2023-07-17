@@ -39,6 +39,7 @@ class HeaderViewItem extends SliverPersistentHeaderDelegate {
               height: 30.h,
               child: Expanded(
                 child: ListView(
+                  physics: BouncingScrollPhysics(),
                   scrollDirection: Axis.horizontal,
                   children: [
                     ZoomTapAnimation(

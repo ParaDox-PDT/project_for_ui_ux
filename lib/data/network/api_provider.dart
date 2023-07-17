@@ -8,17 +8,18 @@ import '../models/universal_response.dart';
 
 class ApiProvider {
 
-  Future<UniversalResponse> getMonthlyTime(String month,String region) async {
-    Uri uri = Uri.parse("https://islomapi.uz/api/monthly?region=$region&month=$month");
+  Future<UniversalResponse> translateText(String text,String firstLang,String secondLang) async {
+    // Uri uri = Uri.parse("https://api.mymemory.translated.net/get?q=!&langpair=en|it");
+    Uri uri =Uri.https("api.mymemory.translated.net","/get",{
+      "q":"$text",
+      "langpair":"$firstLang|$secondLang"
+    });
     try {
       http.Response response = await http.get(uri);
 
       if (response.statusCode == 200) {
         return UniversalResponse(
-            data: (jsonDecode(response.body) as List?)
-                ?.map((e) => NamazTimeModel.fromJson(e))
-                .toList() ??
-                []);
+            data: (jsonDecode(response.body))["responseData"]["translatedText"] as String);
       }
       return UniversalResponse(error: "ERROR");
     } catch (error) {
