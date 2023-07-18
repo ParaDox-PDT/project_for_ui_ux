@@ -136,12 +136,20 @@ class _HomeScreenState extends State<HomeScreen> {
                     ...List.generate(
                       queries.length,
                       (index) => ZoomTapAnimation(
+                        onLongTap: (){
+                          setState(() {
+                            queries.removeWhere((element) => element==queryText);
+                            queries=queries.toSet().toList();
+                            StorageRepository.putList("queries", queries);
+                          });
+                        },
                         onTap: (){
                           setState(() {
                             organics = [];
                             queryText=queries[index];
                             controller.text=queries[index];
                             currentPage = 1;
+                            focusNode.unfocus();
                           });
                           _getResults();
                         },
