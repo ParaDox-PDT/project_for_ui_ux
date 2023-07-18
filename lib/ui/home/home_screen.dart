@@ -21,6 +21,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   final TextEditingController controller = TextEditingController();
   final ScrollController scrollController = ScrollController();
+  final FocusNode focusNode = FocusNode();
 
   int currentPage = 1;
   int countOfItems = 5;
@@ -93,8 +94,10 @@ class _HomeScreenState extends State<HomeScreen> {
                     organics = [];
                     currentPage = 1;
                   });
+                  focusNode.unfocus();
                   _getResults();
                 },
+                focusNode: focusNode,
                 controller: controller,
                 decoration: InputDecoration(
                   prefixIcon: Icon(
