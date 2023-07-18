@@ -32,6 +32,7 @@ dependencies:
   path: ^1.8.3
   mask_text_input_formatter: ^2.4.0
   like_button: ^2.0.5
+  lottie: ^2.4.0
 
 dev_dependencies:
   flutter_test:

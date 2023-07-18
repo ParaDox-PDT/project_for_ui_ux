@@ -4,8 +4,10 @@ import 'package:flutter_defualt_project/data/models/google_search/google_search_
 import 'package:flutter_defualt_project/data/models/google_search/organic_model.dart';
 import 'package:flutter_defualt_project/data/network/api_provider.dart';
 import 'package:flutter_defualt_project/data/network/api_repository.dart';
+import 'package:flutter_defualt_project/utils/icons.dart';
 import 'package:flutter_defualt_project/utils/images.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lottie/lottie.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:zoom_tap_animation/zoom_tap_animation.dart';
 
@@ -27,7 +29,7 @@ class _HomeScreenState extends State<HomeScreen> {
   ApiRepository apiRepository = ApiRepository(apiProvider: ApiProvider());
   late GoogleSearchModel googleSearchModel;
   List<OrganicModel> organics = [];
-  List<String> queries=StorageRepository.getList("queries");
+  List<String> queries = StorageRepository.getList("queries").toSet().toList();
 
   _getResults() async {
     setState(() {
@@ -39,6 +41,7 @@ class _HomeScreenState extends State<HomeScreen> {
     setState(() {
       isLoading = false;
       queries.add(queryText);
+      queries=queries.toSet().toList();
       StorageRepository.putList("queries", queries);
       currentPage++;
     });
@@ -61,12 +64,11 @@ class _HomeScreenState extends State<HomeScreen> {
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         leading: Image.asset(AppImages.google),
+        // title: Lottie.asset(AppIcons.googleIcon),
+        // leading: Lottie.asset(AppIcons.googleIcon),
         title: Text(
           "Google",
-          style: Theme
-              .of(context)
-              .textTheme
-              .headlineSmall,
+          style: Theme.of(context).textTheme.headlineSmall,
         ),
         centerTitle: true,
         elevation: 10,
@@ -81,10 +83,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 borderRadius: BorderRadius.circular(10.r),
               ),
               child: TextField(
-                style: Theme
-                    .of(context)
-                    .textTheme
-                    .titleLarge,
+                style: Theme.of(context).textTheme.titleLarge,
                 textInputAction: TextInputAction.search,
                 onChanged: (v) {
                   queryText = v;
@@ -103,8 +102,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     color: Colors.grey,
                   ),
                   hintText: "Search here",
-                  hintStyle: Theme
-                      .of(context)
+                  hintStyle: Theme.of(context)
                       .textTheme
                       .titleLarge!
                       .copyWith(color: Colors.grey),
@@ -126,13 +124,47 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
             ),
+            Container(
+              height: 50.h,
+              child: Expanded(
+                child: ListView(
+                  scrollDirection: Axis.horizontal,
+                  children: [
+                    ...List.generate(
+                      queries.length,
+                      (index) => ZoomTapAnimation(
+                        onTap: (){
+                          setState(() {
+                            organics = [];
+                            queryText=queries[index];
+                            controller.text=queries[index];
+                            currentPage = 1;
+                          });
+                          _getResults();
+                        },
+                        child: Container(
+                          margin: EdgeInsets.symmetric(horizontal: 4.w,vertical: 4.h),
+                          padding: EdgeInsets.symmetric(horizontal: 4.w),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20.r),
+                            border: Border.all(width: 1,color: Colors.black)
+                          ),
+                          child: Center(child: Text(queries[index])),
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
+            SizedBox(height: 10.h,),
             Expanded(
               child: ListView(
                 controller: scrollController,
                 children: [
                   ...List.generate(
                     organics.length,
-                        (index) {
+                    (index) {
                       OrganicModel organicModel = organics[index];
                       return Container(
                         margin: EdgeInsets.symmetric(vertical: 10.h),
@@ -143,38 +175,47 @@ class _HomeScreenState extends State<HomeScreen> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            ZoomTapAnimation(onTap:()async{
-                              await launchUrl(Uri.parse("${organicModel.link}"));
-                            },
-                                child: Text(organicModel.title, style: Theme
-                                    .of(context)
-                                    .textTheme
-                                    .titleLarge,)),
-                            ZoomTapAnimation(onTap:()async{
-                              await launchUrl(Uri.parse("${organicModel.link}"));
-                            },
-                                child: Text(organicModel.link, style: Theme
-                                    .of(context)
-                                    .textTheme
-                                    .titleMedium,)),
-                            Text(organicModel.snippet, style: Theme
-                                .of(context)
-                                .textTheme
-                                .titleSmall,),
-                            SizedBox(height: 16.h,),
+                            ZoomTapAnimation(
+                                onTap: () async {
+                                  await launchUrl(
+                                      Uri.parse("${organicModel.link}"));
+                                },
+                                child: Text(
+                                  organicModel.title,
+                                  style: Theme.of(context).textTheme.titleLarge,
+                                )),
+                            ZoomTapAnimation(
+                                onTap: () async {
+                                  await launchUrl(
+                                      Uri.parse("${organicModel.link}"));
+                                },
+                                child: Text(
+                                  organicModel.link,
+                                  style:
+                                      Theme.of(context).textTheme.titleMedium,
+                                )),
+                            Text(
+                              organicModel.snippet,
+                              style: Theme.of(context).textTheme.titleSmall,
+                            ),
+                            SizedBox(
+                              height: 16.h,
+                            ),
                             organicModel.imageUrl.isNotEmpty
                                 ? Image.network(
-                              organicModel.imageUrl, fit: BoxFit.fill,)
+                                    organicModel.imageUrl,
+                                    fit: BoxFit.fill,
+                                  )
                                 : SizedBox(
-                              height: 0,
-                            )
+                                    height: 0,
+                                  )
                           ],
                         ),
                       );
                     },
                   ),
                   Visibility(
-                    child: Center(child: CircularProgressIndicator()),
+                    child: Center(child:Lottie.asset(AppIcons.google)),
                     visible: isLoading,
                   )
                 ],

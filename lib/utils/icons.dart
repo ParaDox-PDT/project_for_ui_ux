@@ -15,4 +15,6 @@ class AppIcons{
   static const String ellipse="assets/svg/ellipse.svg";
   static const String bigEllipse="assets/svg/big_ellipse.svg";
   static const String rectangle="assets/svg/rectangle.svg";
+  static const String google="assets/images/google_lotti.json";
+  static const String googleIcon="assets/images/google_icon.json";
 }
