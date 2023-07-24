@@ -14,7 +14,7 @@ class _AnimationScreen4State extends State<AnimationScreen4>
   bool selected=false;
   late AnimationController animationController;
   late Animation colorAnimation;
-  late Animation textAnimation;
+  late Animation<String> textAnimation;
 
   @override
   void initState() {
@@ -24,7 +24,6 @@ class _AnimationScreen4State extends State<AnimationScreen4>
 
     colorAnimation = ColorTween(begin: Colors.orangeAccent, end: Colors.green)
         .animate(animationController);
-
 
     animationController.addListener(() {});
     animationController.repeat(reverse: true);
@@ -48,6 +47,7 @@ class _AnimationScreen4State extends State<AnimationScreen4>
             });
           },
           child: AnimatedContainer(
+            padding: EdgeInsets.symmetric(horizontal: 10.w),
             width: 200.w,
             height: 200.h,
             decoration: BoxDecoration(

@@ -10,6 +10,26 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  List<String> routNames = [
+    RouteNames.animationScreen1,
+    RouteNames.animationScreen2,
+    RouteNames.animationScreen3,
+    RouteNames.animationScreen4,
+    RouteNames.animationScreen5,
+    RouteNames.animationScreen6,
+    RouteNames.animationScreen7,
+    RouteNames.animationScreen8,
+    RouteNames.animationScreen9,
+    RouteNames.animationScreen10,
+    RouteNames.animationScreen11,
+    RouteNames.animationScreen12,
+    RouteNames.animationScreen13,
+    RouteNames.animationScreen14,
+    RouteNames.animationScreen15,
+    RouteNames.animationScreen16,
+    RouteNames.animationScreen17,
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,27 +41,25 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       body: Column(
         children: [
-          ...List.generate(
-            4,
-            (index) => ListTile(
-              onTap: () {
-                if (index == 0) {
-                  Navigator.pushNamed(context, RouteNames.animationScreen1);
-                } else if (index == 1) {
-                  Navigator.pushNamed(context, RouteNames.animationScreen2);
-                } else if (index == 2) {
-                  Navigator.pushNamed(context, RouteNames.animationScreen3);
-                } else {
-                  Navigator.pushNamed(context, RouteNames.animationScreen4);
-                }
-              },
-              title: Text(
-                "Animation ${index + 1}",
-                style: TextStyle(
-                    fontSize: 20.sp,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.black),
-              ),
+          Expanded(
+            child: ListView(
+              children: [
+                ...List.generate(
+                  routNames.length,
+                  (index) => ListTile(
+                    onTap: () {
+                      Navigator.pushNamed(context, routNames[index]);
+                    },
+                    title: Text(
+                      "Animation ${index + 1}",
+                      style: TextStyle(
+                          fontSize: 20.sp,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.black),
+                    ),
+                  ),
+                )
+              ],
             ),
           )
         ],

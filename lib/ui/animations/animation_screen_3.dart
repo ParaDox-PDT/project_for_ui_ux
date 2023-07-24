@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:zoom_tap_animation/zoom_tap_animation.dart';
-
 class AnimationScreen3 extends StatefulWidget {
   const AnimationScreen3({super.key});
 
@@ -28,25 +26,22 @@ class _AnimationScreen3State extends State<AnimationScreen3>
         .animate(animationController);
 
     sizeHeightAnimation = Tween<double>(begin: 300.0.w, end: 50.0.w).animate(
-        CurvedAnimation(parent: animationController,
+        CurvedAnimation(
+            parent: animationController,
             curve: Curves.linear,
-            reverseCurve: Curves.linear))..addListener(() {
-
-    });
+            reverseCurve: Curves.linear))
+      ..addListener(() {});
     sizeWidthAnimation = Tween<double>(begin: 100.0.w, end: 300.0.w).animate(
-        CurvedAnimation(parent: animationController,
+        CurvedAnimation(
+            parent: animationController,
             curve: Curves.linear,
-            reverseCurve: Curves.linear))..addListener(() {
-
-    });
-
+            reverseCurve: Curves.linear))
+      ..addListener(() {});
 
     borderAnimation =
-        Tween<double>(begin: 5.0, end: 50.0).animate(animationController);
+        Tween<double>(begin: 5.0.r, end: 50.0.r).animate(animationController);
 
-    animationController.addListener(() {
-
-    });
+    animationController.addListener(() {});
 
     animationController.repeat();
   }
@@ -61,21 +56,20 @@ class _AnimationScreen3State extends State<AnimationScreen3>
         ),
       ),
       body: Center(
-        child: ZoomTapAnimation(
-          onTap: (){
-            setState(() {
-
-            });
-          },
-          child: AnimatedContainer(
-            height: sizeHeightAnimation.value,
-            width: sizeWidthAnimation.value,
-            decoration: BoxDecoration(
+        child: AnimatedContainer(
+          height: sizeHeightAnimation.value,
+          width: sizeWidthAnimation.value,
+          decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(borderAnimation.value),
-              color: colorAnimation.value
-            ), duration: const Duration(seconds: 1),
-          ),
+              color: colorAnimation.value),
+          duration: const Duration(seconds: 1),
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          setState(() {});
+        },
+        child: const Icon(Icons.play_arrow_outlined),
       ),
     );
   }
