@@ -12,7 +12,7 @@ class _AnimationScreen11State extends State<AnimationScreen11>
     with SingleTickerProviderStateMixin {
   late AnimationController controller;
   late Animation alignAnimation;
-
+  bool  isTapped= true;
   @override
   void initState() {
     super.initState();
@@ -23,7 +23,7 @@ class _AnimationScreen11State extends State<AnimationScreen11>
 
     alignAnimation = AlignmentTween(
             begin: Alignment.topLeft, end: Alignment.bottomRight)
-        .animate(CurvedAnimation(parent: controller, curve: Curves.bounceIn));
+        .animate(CurvedAnimation(parent: controller, curve: Curves.bounceIn,reverseCurve: Curves.bounceOut));
     controller.addListener(() {
       setState(() {});
     });
@@ -56,8 +56,8 @@ class _AnimationScreen11State extends State<AnimationScreen11>
             ),
             TextButton(
                 onPressed: () {
-                  controller.reset();
-                  controller.forward();
+                  isTapped=!isTapped;
+                  isTapped?controller.reverse(): controller.forward();
                 },
                 child: const Text(
                   "Change align",

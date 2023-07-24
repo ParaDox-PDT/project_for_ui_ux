@@ -66,15 +66,19 @@ class _AnimationScreen6State extends State<AnimationScreen6>
                           alignment: alignAnimation1.value,
                           child: ZoomTapAnimation(
                               onTap: () {
-                                isVisible2 = false;
+                                isVisible2=!isVisible2;
                                 setState(() {});
-                                animationController.forward();
+                                !isVisible1?animationController.reverse(): animationController.forward();
                               },
-                              child: AnimatedContainer(
-                                width: widthAnimation.value,
-                                height: heightAnimation.value,
-                                color: Colors.blue,
-                                duration: const Duration(seconds: 0),
+                              child: AnimatedOpacity(
+                                opacity: !isVisible1?0.0:1.0,
+                                duration: Duration(seconds: 3),
+                                child: AnimatedContainer(
+                                  width: widthAnimation.value,
+                                  height: heightAnimation.value,
+                                  color: Colors.blue,
+                                  duration: const Duration(seconds: 0),
+                                ),
                               )),
                         )
                       : const SizedBox(
@@ -85,15 +89,19 @@ class _AnimationScreen6State extends State<AnimationScreen6>
                           alignment: alignAnimation2.value,
                           child: ZoomTapAnimation(
                               onTap: () {
-                                isVisible1 = false;
+                                isVisible1=!isVisible1;
                                 setState(() {});
-                                animationController.forward();
+                                !isVisible1?animationController.reverse(): animationController.forward();
                               },
-                              child: AnimatedContainer(
-                                duration: const Duration(seconds: 0),
-                                width: widthAnimation2.value,
-                                height: heightAnimation2.value,
-                                color: Colors.blue,
+                              child: AnimatedOpacity(
+                                opacity: !isVisible2?0.0:1.0,
+                                duration: Duration(seconds: 3),
+                                child: AnimatedContainer(
+                                  duration: const Duration(seconds: 0),
+                                  width: widthAnimation2.value,
+                                  height: heightAnimation2.value,
+                                  color: Colors.blue,
+                                ),
                               )),
                         )
                       : const SizedBox(

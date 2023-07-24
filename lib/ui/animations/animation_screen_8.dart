@@ -8,25 +8,12 @@ class AnimationScreen8 extends StatefulWidget {
   State<AnimationScreen8> createState() => _AnimationScreen8State();
 }
 
-class _AnimationScreen8State extends State<AnimationScreen8>
-    with TickerProviderStateMixin {
-  late AnimationController controller;
-  late Animation opacityAnimation;
-  late Animation opacityAnimation2;
-  bool isTapped = true;
+class _AnimationScreen8State extends State<AnimationScreen8> {
+  bool isTapped = false;
 
   @override
   void initState() {
     super.initState();
-    controller =
-        AnimationController(vsync: this, duration: Duration(seconds: 0));
-
-    opacityAnimation = Tween(begin: 1.0, end: 0.0).animate(controller);
-    opacityAnimation2 = Tween(begin: 0.0, end: 1.0).animate(controller);
-
-    controller.addListener(() {
-      setState(() {});
-    });
   }
 
   @override
@@ -37,7 +24,7 @@ class _AnimationScreen8State extends State<AnimationScreen8>
       ),
       body: Center(
         child: AnimatedOpacity(
-          opacity:isTapped? opacityAnimation.value:opacityAnimation2.value,
+          opacity: isTapped ? 0.0 : 1.0,
           duration: Duration(seconds: 3),
           child: Container(
             width: 250.w,
@@ -47,13 +34,12 @@ class _AnimationScreen8State extends State<AnimationScreen8>
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: (){
-          isTapped=!isTapped;
-          controller.reset();
-          controller.forward();
-
+        onPressed: () {
+          setState(() {
+            isTapped = !isTapped;
+          });
         },
-        child: Icon(isTapped?Icons.visibility_off:Icons.visibility),
+        child: Icon(Icons.flip),
       ),
     );
   }
