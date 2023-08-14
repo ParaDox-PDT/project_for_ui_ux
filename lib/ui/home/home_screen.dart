@@ -87,6 +87,29 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
               ),
+              SizedBox(height: 40.h,),
+              ZoomTapAnimation(
+                onTap: () {
+                  Navigator.pushNamed(context, RouteNames.dynamicView);
+                },
+                child: Container(
+                  width: 200.w,
+                  height: 60.h,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(16.r),
+                      color: Colors.tealAccent,
+                      border: Border.all(width: 1, color: Colors.black)),
+                  child: Center(
+                    child: Text(
+                      "Dynamic Views",
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.w600,
+                          fontSize: 24.sp),
+                    ),
+                  ),
+                ),
+              ),
             ],
           ),
         ));
