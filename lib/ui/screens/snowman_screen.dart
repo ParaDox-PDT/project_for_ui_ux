@@ -218,6 +218,7 @@ class SnowmanPainter extends CustomPainter {
     canvas.drawCircle(Offset(size.width / 1.75, size.height * 0.47 + 20 * i),
     5, buttonPaint);
     }
+    canvas.drawLine(Offset(34.7,178.7), Offset(32.5,184.6), Paint()..color = Colors.white..strokeWidth = 4);
   }
 
   @override
